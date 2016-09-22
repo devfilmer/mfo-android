@@ -20,11 +20,14 @@ import com.makerfaireorlando.mforlando.Network.ScheduleRestClient;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
+import java.util.Calendar;
 
 public class ScheduleFragment extends Fragment {
     Gson gson = new Gson();
     Schedule mSchedule;
     private ProgressBar mProgressBar;
+    private int dateMonth;
+    private int dateDay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +53,15 @@ public class ScheduleFragment extends Fragment {
                 tabs.setTextColor(Color.WHITE);
                 tabs.setIndicatorColor(Color.WHITE);
                 tabs.setViewPager(pager);
+                // Hacked together calendar to get current date and set tab to second day of Maker Faire  TODO: (probably should create a real function to handle this but meh
+                Calendar c = Calendar.getInstance();
+                dateMonth = c.get(Calendar.MONTH);
+                dateDay =  c.get(Calendar.DAY_OF_MONTH);
+                if (dateMonth == 9 && dateDay == 23) {
+                    pager.setCurrentItem(1);
+                }
+
+
                 mProgressBar.setVisibility(View.GONE);
             }
         });

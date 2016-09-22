@@ -16,12 +16,23 @@ public class MapFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
         final WebView webView = (WebView) rootView.findViewById(R.id.webView);
-        webView.loadUrl("file:///android_res/drawable/maps_level1.png");
+        webView.loadUrl("file:///android_res/drawable/mfo_2016_event_map_v1.jpg");
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setDisplayZoomControls(false);
         webView.getSettings().setJavaScriptEnabled(true);
+
+/* This Block added to hide button functionality for Orlando Science Center. Remove block and modify layout/fragment_map.xml to regain functionality
+        if Maker Faire returns to Orlando Science Center*/
+
+        rootView.findViewById(R.id.map_floorcontrol).setVisibility(View.INVISIBLE);
+        rootView.findViewById(R.id.map_floor1).setVisibility(View.INVISIBLE);
+        rootView.findViewById(R.id.map_floor2).setVisibility(View.INVISIBLE);
+        rootView.findViewById(R.id.map_floor3).setVisibility(View.INVISIBLE);
+        rootView.findViewById(R.id.map_floor4).setVisibility(View.INVISIBLE);
+
+
 
         Button level1 = (Button) rootView.findViewById(R.id.map_floor1);
         level1.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +69,7 @@ public class MapFragment extends Fragment {
                 webView.loadUrl("file:///android_res/drawable/maps_level4.png");
             }
         });
+
 
         setHasOptionsMenu(true);
         return rootView;
